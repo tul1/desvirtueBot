@@ -25,7 +25,7 @@ public class commandsHandler extends TelegramLongPollingCommandBot {
         register(new finalizarEventoCmd());
 
         //En caso de que no sea correcto el mensaje
-        registerDefaultAction((absSender, message) -> {
+        /*registerDefaultAction((absSender, message) -> {
             SendMessage commandUnknownMessage = new SendMessage();
             commandUnknownMessage.setChatId(message.getChatId());
             commandUnknownMessage.setText("El comando '" + message.getText() + "' es inexistente.");
@@ -35,7 +35,8 @@ public class commandsHandler extends TelegramLongPollingCommandBot {
                 BotLogger.error(LOGTAG, e);
             }
             helpCmd.execute(absSender, message.getFrom(), message.getChat(), new String[] {});
-        });
+        });*/
+
     }
 
 

@@ -13,6 +13,13 @@ import org.telegram.telegrambots.logging.BotLogger;
  * Created by Patricio Tula on 27-Dec-16.
  **/
 
+/*
+
+TODO'S
+        ESTA CLASE NO ESTA FUNCIONANDO. NO LA RECONOCE EL BOT.
+
+*/
+
 public class helpCmd extends BotCommand {
 
     private static final String LOGTAG = "HELPCOMMAND";

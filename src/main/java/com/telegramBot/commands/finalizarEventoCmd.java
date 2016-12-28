@@ -15,7 +15,7 @@ public class finalizarEventoCmd  extends BotCommand {
 
     private static final String LOGTAG="FINALIZAREVENTOCMD";
 
-    public imprimirEventoCmd(){
+    public finalizarEventoCmd(){
         super("finalizarEvento","Con este comando finalizaras el evento.");
     }
 
