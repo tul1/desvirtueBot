@@ -8,14 +8,13 @@ import org.telegram.telegrambots.bots.TelegramLongPollingCommandBot;
 import org.telegram.telegrambots.exceptions.TelegramApiException;
 import org.telegram.telegrambots.logging.BotLogger;
 
-/**
- * Created by Patricio Tula on 27-Dec-16.
- **/
+
 public class commandsHandler extends TelegramLongPollingCommandBot {
 
     public static final String LOGTAG="COMMANDSHANDLER";
 
     public commandsHandler(){
+        //Registro los comandos que va a menejar el bot
         register(new iniciarEventoCmd());
         register(new lugarCmd());
         register(new horaCmd());
@@ -23,9 +22,12 @@ public class commandsHandler extends TelegramLongPollingCommandBot {
         register(new noVoyCmd());
         register(new imprimirEventoCmd());
         register(new finalizarEventoCmd());
+        //hay que pasarle este contexto para que tenga acceso a la lista de comandos
+        helpCmd helpCommand = new helpCmd(this);
+        register(helpCommand);
 
-        //En caso de que no sea correcto el mensaje
-        /*registerDefaultAction((absSender, message) -> {
+        //esta funcion maneja el comportamiento por defecto del bot
+        registerDefaultAction((absSender, message) -> {
             SendMessage commandUnknownMessage = new SendMessage();
             commandUnknownMessage.setChatId(message.getChatId());
             commandUnknownMessage.setText("El comando '" + message.getText() + "' es inexistente.");
@@ -34,8 +36,8 @@ public class commandsHandler extends TelegramLongPollingCommandBot {
             } catch (TelegramApiException e) {
                 BotLogger.error(LOGTAG, e);
             }
-            helpCmd.execute(absSender, message.getFrom(), message.getChat(), new String[] {});
-        });*/
+     //       helpCmd.execute(absSender, message.getFrom(), message.getChat(), new String[] {});
+        });
 
     }
 

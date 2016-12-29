@@ -5,20 +5,19 @@ import org.telegram.telegrambots.api.objects.Chat;
 import org.telegram.telegrambots.api.objects.User;
 import org.telegram.telegrambots.bots.AbsSender;
 import org.telegram.telegrambots.bots.commands.BotCommand;
-import org.telegram.telegrambots.bots.commands.ICommandRegistry;
 import org.telegram.telegrambots.exceptions.TelegramApiException;
 import org.telegram.telegrambots.logging.BotLogger;
+
+import org.telegram.telegrambots.bots.commands.ICommandRegistry;
+
 
 /**
  * Created by Patricio Tula on 27-Dec-16.
  **/
 
-/*
 
-TODO'S
-        ESTA CLASE NO ESTA FUNCIONANDO. NO LA RECONOCE EL BOT.
+//TODO ESTA CLASE NO ESTA FUNCIONANDO. NO LA RECONOCE EL BOT.
 
-*/
 
 public class helpCmd extends BotCommand {
 
@@ -30,6 +29,7 @@ public class helpCmd extends BotCommand {
         super("help", "Get all the commands this bot provides");
         this.commandRegistry = commandRegistry;
     }
+
 
     @Override
     public void execute(AbsSender absSender, User user, Chat chat, String[] strings) {
