@@ -8,10 +8,10 @@ import org.telegram.telegrambots.bots.commands.BotCommand;
 import org.telegram.telegrambots.exceptions.TelegramApiException;
 import org.telegram.telegrambots.logging.BotLogger;
 
-
-/**
- * Created by Patricio Tula on 27-Dec-16.
- **/
+/*
+    Descripcion:
+        Este metodo armara las 2 tablas en la base.
+*/
 
 public class iniciarEventoCmd extends BotCommand {
 
@@ -24,8 +24,9 @@ public class iniciarEventoCmd extends BotCommand {
     @Override
     public void execute(AbsSender absSender, User user, Chat chat, String[] strings){
         StringBuilder messageBuilder =  new StringBuilder();
-
         messageBuilder.append("Has iniciado un nuevo evento\n");
+
+        //crear tablas si no existen, si existen el comando no debera hacer nada.
 
         SendMessage answer = new SendMessage();
         answer.setChatId(chat.getId().toString());

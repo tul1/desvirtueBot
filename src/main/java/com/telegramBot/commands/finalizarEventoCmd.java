@@ -8,9 +8,11 @@ import org.telegram.telegrambots.bots.commands.BotCommand;
 import org.telegram.telegrambots.exceptions.TelegramApiException;
 import org.telegram.telegrambots.logging.BotLogger;
 
-/**
- * Created by Patricio Tula on 27-Dec-16.
- **/
+/*
+* Descripcion:
+*   Este comando debera destruir los datos de la base unicamente.
+* */
+
 public class finalizarEventoCmd  extends BotCommand {
 
     private static final String LOGTAG="FINALIZAREVENTOCMD";
@@ -23,6 +25,9 @@ public class finalizarEventoCmd  extends BotCommand {
     public void execute(AbsSender absSender, User user, Chat chat, String[] strings){
         StringBuilder messageBuilder =  new StringBuilder();
         messageBuilder.append("Evento finalizado!\n");
+
+        //OPERACIONES CON LA BASE QUE DESTRUYEN LA TABLA CREADA PARA EL EVENTO
+
 
         SendMessage answer = new SendMessage();
         answer.setChatId(chat.getId().toString());

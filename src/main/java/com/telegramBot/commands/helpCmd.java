@@ -7,17 +7,12 @@ import org.telegram.telegrambots.bots.AbsSender;
 import org.telegram.telegrambots.bots.commands.BotCommand;
 import org.telegram.telegrambots.exceptions.TelegramApiException;
 import org.telegram.telegrambots.logging.BotLogger;
-
 import org.telegram.telegrambots.bots.commands.ICommandRegistry;
 
-
-/**
- * Created by Patricio Tula on 27-Dec-16.
- **/
-
-
-//TODO ESTA CLASE NO ESTA FUNCIONANDO. NO LA RECONOCE EL BOT.
-
+/*
+    Descripcion:
+        Este comando simplemente imprime por pantalla un breve resumen de las rutinas que realiza el bot.
+*/
 
 public class helpCmd extends BotCommand {
 
@@ -35,7 +30,7 @@ public class helpCmd extends BotCommand {
     public void execute(AbsSender absSender, User user, Chat chat, String[] strings) {
 
         StringBuilder helpMessageBuilder = new StringBuilder("<b>Help</b>\n");
-        helpMessageBuilder.append("These are the registered commands for this Bot:\n\n");
+        helpMessageBuilder.append("Los siguientes son los comandos que puede manejar el desvirtue_bot:\n\n");
 
         for (BotCommand botCommand : commandRegistry.getRegisteredCommands()) {
             helpMessageBuilder.append(botCommand.toString()).append("\n\n");

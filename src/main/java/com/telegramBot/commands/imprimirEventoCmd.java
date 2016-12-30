@@ -8,9 +8,11 @@ import org.telegram.telegrambots.bots.commands.BotCommand;
 import org.telegram.telegrambots.exceptions.TelegramApiException;
 import org.telegram.telegrambots.logging.BotLogger;
 
-/**
- * Created by Patricio Tula on 27-Dec-16.
- **/
+/*
+*   Descripcion:
+*       Este comando debe imprimir el estado actual del evento. Decha, Lugar e invitados.
+*/
+
 public class imprimirEventoCmd extends BotCommand {
 
     private static final String LOGTAG="IMPRIMIREVENTOCMD";
@@ -23,6 +25,8 @@ public class imprimirEventoCmd extends BotCommand {
     public void execute(AbsSender absSender, User user, Chat chat, String[] strings){
         StringBuilder messageBuilder =  new StringBuilder();
         messageBuilder.append("Datos del evento!\n");
+
+        //conectarse con la base e imprimir el contenido relevante de las tablas
 
         SendMessage answer = new SendMessage();
         answer.setChatId(chat.getId().toString());

@@ -8,9 +8,11 @@ import org.telegram.telegrambots.bots.commands.BotCommand;
 import org.telegram.telegrambots.exceptions.TelegramApiException;
 import org.telegram.telegrambots.logging.BotLogger;
 
-/**
- * Created by Patricio Tula on 27-Dec-16.
- **/
+/*
+*   Descripcion:
+*       Esta funcion agrega un invitado a la lista.
+*/
+
 public class voyCmd extends BotCommand {
     private static final String LOGTAG = "VOYCMD";
 
@@ -22,8 +24,9 @@ public class voyCmd extends BotCommand {
     public void execute(AbsSender absSender, User user, Chat chat, String[] strings){
         StringBuilder messageBuilder =  new StringBuilder();
         String userName = user.getFirstName() + " " + user.getLastName();
-
         messageBuilder.append(userName).append(" bienvenido al evento!\n");
+
+        //conectar a la base de datos y agregar el nombre y apellido del usuario que invoco el comando.
 
         SendMessage answer = new SendMessage();
         answer.setChatId(chat.getId().toString());

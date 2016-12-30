@@ -8,9 +8,11 @@ import org.telegram.telegrambots.bots.commands.BotCommand;
 import org.telegram.telegrambots.exceptions.TelegramApiException;
 import org.telegram.telegrambots.logging.BotLogger;
 
-/**
- * Created by Patricio Tula on 27-Dec-16.
- **/
+/*
+    Descripcion:
+        Establece la hora a la que se realizara el evento. Carga en la tabla la hora del evento.
+*/
+
 public class horaCmd extends BotCommand{
     private static final String LOGTAG = "HORACMD";
 
@@ -20,6 +22,11 @@ public class horaCmd extends BotCommand{
 
     @Override
     public void execute(AbsSender absSender, User user, Chat chat, String[] strings){
+
+        //Procesar la cadena que contiene la hora y guardarla en la base
+
+
+
         StringBuilder messageBuilder =  new StringBuilder();
         messageBuilder.append("El evento se realizara a las ").append("19:00").append("\n");
 

@@ -11,6 +11,7 @@ import org.telegram.telegrambots.logging.BotLogger;
 /**
  * Created by Patricio Tula on 27-Dec-16.
  **/
+
 public class noVoyCmd extends BotCommand {
     private static final String LOGTAG="NOVOYCMD";
 

@@ -1,4 +1,6 @@
-telegramBot - 27/12/2016
+#telegramBot - 27/12/2016
+
+##Descripcion
 
 En este repositorio se encuentra el codigo fuente del bot para la aplicacion de mensajeria telegram utilizado en el grupo de chat desvirtue.
 
@@ -23,3 +25,14 @@ El bot funciona con los siguientes de comandos.
 * finalizarEvento. Eliminara toda la informacion generada del evento. Este comando no recibira ningun argumentos.
 
 * help. Imprimira los comandos disponibles.
+
+## Base de datos:
+
+La base de datos tendra 2 tablas. 
+La primera contendra datos generales del evento:
+
+| Id | Hora | Lugar | Id tabla invitados |
+
+La segunda tabla tendra cargada los datos de los invitados:
+
+| Id | fecha de registro | Nombre y apellido |

@@ -8,9 +8,10 @@ import org.telegram.telegrambots.bots.commands.BotCommand;
 import org.telegram.telegrambots.exceptions.TelegramApiException;
 import org.telegram.telegrambots.logging.BotLogger;
 
-/**
- * Created by Patricio Tula on 27-Dec-16.
- **/
+/*
+* Descripcion: Estable el lugar donde se realizara la reunion.
+*/
+
 public class lugarCmd extends BotCommand {
     private static final String LOGTAG="LUGARCMD";
 
@@ -20,6 +21,10 @@ public class lugarCmd extends BotCommand {
 
     @Override
     public void execute(AbsSender absSender, User user, Chat chat, String[] strings){
+
+        //Procesar la cadena que contiene el lugar y guardarla en la base
+
+
         StringBuilder messageBuilder =  new StringBuilder();
         messageBuilder.append("El evento se realizara en ").append("Narnia").append("\n");
 
