@@ -31,7 +31,7 @@ El bot funciona con los siguientes de comandos.
 La base de datos tendra 2 tablas. 
 La primera contendra datos generales del evento:
 
-| Id | Hora | Lugar | Id tabla invitados |
+| Id | Fecha | Hora | Lugar | Id tabla invitados |
 
 La segunda tabla tendra cargada los datos de los invitados:
 

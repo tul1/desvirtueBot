@@ -17,6 +17,7 @@ public class commandsHandler extends TelegramLongPollingCommandBot {
         //Registro los comandos que va a menejar el bot
         register(new iniciarEventoCmd());
         register(new lugarCmd());
+        register(new fechaCmd());
         register(new horaCmd());
         register(new voyCmd());
         register(new noVoyCmd());

@@ -12,33 +12,32 @@ import org.telegram.telegrambots.logging.BotLogger;
 import java.sql.SQLException;
 
 /*
-    Descripcion:
-        Establece la hora a la que se realizara el evento. Carga en la tabla la hora del evento.
+* Descripcion: Estable el lugar donde se realizara la reunion.
 */
 
-public class horaCmd extends BotCommand{
-    private static final String LOGTAG = "HORACMD";
+public class fechaCmd extends BotCommand {
+    private static final String LOGTAG="FECHACMD";
     private static volatile conectionDB connection;
 
-    public horaCmd(){
-        super("hora","Con este comando podras establecer la hora del evento.");
+    public fechaCmd(){
+        super("fecha", "Con este comando podras establecer el fecha del evento.");
     }
 
     @Override
     public void execute(AbsSender absSender, User user, Chat chat, String[] strings){
-
-        String hora= new String(strings[0]);
-
+        String fecha = strings[0];
+        //se agrega el lugar en la columna necesaria
         connection = new conectionDB();
         try {
             //TODO ESTE QUERRY DEBE IR EN OTRO PAQUETE
-            connection.executeQuery( "UPDATE `TABLA_EVENTO` SET `HORA` = '"+hora+"' WHERE `tabla_evento`.`ID` = 1");
+            connection.executeQuery( "UPDATE `TABLA_EVENTO` SET `FECHA` = '"+fecha+"' WHERE `tabla_evento`.`ID` = 1");
         } catch (SQLException e) {
             BotLogger.error(LOGTAG, e);
         }
 
+        //imprimo el nombre del lugar por la interfaz de telegram
         StringBuilder messageBuilder =  new StringBuilder();
-        messageBuilder.append("El evento se realizara a las <b>"+hora+"</b> \n");
+        messageBuilder.append("El evento se realizara el <b>"+fecha+"</b>\n");
 
         SendMessage answer = new SendMessage();
         answer.setChatId(chat.getId().toString());
@@ -50,6 +49,5 @@ public class horaCmd extends BotCommand{
         }catch(TelegramApiException e){
             BotLogger.error(LOGTAG, e);
         }
-
     }
 }
