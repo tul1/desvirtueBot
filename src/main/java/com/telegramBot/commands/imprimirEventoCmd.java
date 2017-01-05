@@ -19,8 +19,6 @@ import java.util.List;
 *   Descripcion:
 *       Imprime las coordenadas del evento.
 *   TODO cambiar nombre a "coordenadas"
-*   TODO que pasa si la base no fue creada?
-*   TODO que pasa si algun elemento es NULL
 *
 */
 
@@ -28,7 +26,7 @@ public class imprimirEventoCmd extends BotCommand {
     private static final String LOGTAG="IMPRIMIREVENTOCMD";
 
     public imprimirEventoCmd(){
-        super("imprimirEvento","Este comando imprime los datos del evento, lista de invitados, lugar y hora.");
+        super("imprimirEvento","Inicia un Evento. Ejemplo de ejecucion: /iniciarevento Cumple Cabobo! . El argumento es opcional.");
     }
 
     public class datoEvento{
@@ -40,6 +38,7 @@ public class imprimirEventoCmd extends BotCommand {
     @Override
     public void execute(AbsSender absSender, User user, Chat chat, String[] strings){
         List<datoEvento> datosEvento = new ArrayList<>();
+        boolean tablaExiste=true;
         try {
             final conectionDB connection = new conectionDB();
             final PreparedStatement preparedStatement = connection.getPreparedStatement("SELECT * FROM TABLA_EVENTO WHERE ID=1");
@@ -50,13 +49,19 @@ public class imprimirEventoCmd extends BotCommand {
             datosEvento.add(new datoEvento("Lugar", result.getString("LUGAR")));
             connection.closeConexion();
         } catch (SQLException e) {
-            BotLogger.error(LOGTAG, e);
+//            BotLogger.error(LOGTAG, e);
+            tablaExiste=false;
         }
 
         StringBuilder messageBuilder =  new StringBuilder();
-        for(datoEvento dato: datosEvento){
-            messageBuilder.append( dato.label + ": ");
-            messageBuilder.append("<b>" + dato.value + "</b>\n");
+        if(tablaExiste==true){
+            //todo retocar esto
+            for(datoEvento dato: datosEvento){
+                messageBuilder.append( dato.label + ": ");
+                messageBuilder.append("<b>" + dato.value + "</b>\n");
+            }
+        }else{
+            messageBuilder.append("<b>No hay Evento para imprimir</b>\n");
         }
 
         SendMessage answer = new SendMessage();

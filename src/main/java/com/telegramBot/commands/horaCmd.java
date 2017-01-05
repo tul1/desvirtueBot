@@ -13,29 +13,33 @@ import java.sql.SQLException;
 
 /*
     Descripcion:
-        Establece la hora a la que se realizara el evento. Carga en la tabla la hora del evento.
+        Settea la hora a la que se realizara el evento. Carga en la tabla la hora del evento.
 */
 
 public class horaCmd extends BotCommand{
     private static final String LOGTAG = "HORACMD";
 
     public horaCmd(){
-        super("hora","Con este comando podras establecer la hora del evento.");
+        super("hora","Carga la Hora del evento. Ejemplo de ejecucion: /hora 20:00.");
     }
 
     @Override
     public void execute(AbsSender absSender, User user, Chat chat, String[] strings){
-        String hora= new String(strings[0]);
+        String hora = new String(strings[0]);
+        String answerStr = new String(hora+" <b>Hora asignada</b> \n");
+
         try {
             final conectionDB connection = new conectionDB();
-            connection.executeQuery( "UPDATE `TABLA_EVENTO` SET `HORA` = '"+hora+"' WHERE `tabla_evento`.`ID` = 1");
+            connection.executeQuery( "UPDATE `TABLA_EVENTO` SET `HORA` = '"+hora+"' WHERE `TABLA_EVENTO`.`ID` = 1");
+            connection.executeQuery("UPDATE `TABLA_EVENTO_BUP` SET `HORA` = '" + hora + "' WHERE `TABLA_EVENTO_BUP`.`ID` = 1");
             connection.closeConexion();
         } catch (SQLException e) {
-            BotLogger.error(LOGTAG, e);
+//            BotLogger.error(LOGTAG, e);
+            answerStr="<b>Debe iniciar un Evento para cargar Hora.</b>\n";
         }
 
         StringBuilder messageBuilder =  new StringBuilder();
-        messageBuilder.append("El evento se realizara a las <b>"+hora+"</b> \n");
+        messageBuilder.append(answerStr);
 
         SendMessage answer = new SendMessage();
         answer.setChatId(chat.getId().toString());

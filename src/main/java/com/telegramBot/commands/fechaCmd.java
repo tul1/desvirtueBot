@@ -14,29 +14,32 @@ import java.sql.SQLException;
 /*
 *   Descripcion:
 *       Settea la fecha del evento
-*       TODO que pasa si la tabla no fue creada?
 */
 
 public class fechaCmd extends BotCommand {
     private static final String LOGTAG="FECHACMD";
 
     public fechaCmd(){
-        super("fecha", "Con este comando podras establecer el fecha del evento.");
+        super("fecha", "Carga la Fecha del evento. Ejemplo de ejecucion: /fecha 01/01/17 :-) .");
     }
 
     @Override
     public void execute(AbsSender absSender, User user, Chat chat, String[] strings){
         String fecha = strings[0];
+        String answerStr = new String(fecha+" <b>Fecha cargada</b>\n");
+
         try {
             final conectionDB connection = new conectionDB();
-            connection.executeQuery( "UPDATE `TABLA_EVENTO` SET `FECHA` = '"+fecha+"' WHERE `tabla_evento`.`ID` = 1");
+            connection.executeQuery( "UPDATE `TABLA_EVENTO` SET `FECHA` = '"+fecha+"' WHERE `TABLA_EVENTO`.`ID` = 1");
+            connection.executeQuery( "UPDATE `TABLA_EVENTO_BUP` SET `FECHA` = '"+fecha+"' WHERE `TABLA_EVENTO_BUP`.`ID` = 1");
             connection.closeConexion();
         } catch (SQLException e) {
-            BotLogger.error(LOGTAG, e);
+//            BotLogger.error(LOGTAG, e);
+            answerStr="<b>Debe iniciar un Evento para cargar Fecha.</b>\n";
         }
 
         StringBuilder messageBuilder =  new StringBuilder();
-        messageBuilder.append("El evento se realizara el <b>"+fecha+"</b>\n");
+        messageBuilder.append(answerStr);
 
         SendMessage answer = new SendMessage();
         answer.setChatId(chat.getId().toString());
