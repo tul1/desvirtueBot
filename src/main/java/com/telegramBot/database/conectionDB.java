@@ -3,15 +3,15 @@ package com.telegramBot.database;
 import org.telegram.telegrambots.logging.BotLogger;
 
 import java.sql.Connection;
-import java.sql.DatabaseMetaData;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-public class conectionDB {
 
+
+
+public class conectionDB {
     private static final String LOGTAG="CONECTIONDB";
     private Connection currentConection;
 
@@ -43,13 +43,13 @@ public class conectionDB {
             BotLogger.error(LOGTAG,e);
         }
     }
-
+/*
     public ResultSet runSqlQuery(String query) throws SQLException{
         final Statement statement;
         statement = this.currentConection.createStatement();
         return statement.executeQuery(query);
     }
-
+*/
     public Boolean executeQuery(String query) throws SQLException{
         final Statement statement = this.currentConection.createStatement();
         return statement.execute(query);
@@ -62,7 +62,7 @@ public class conectionDB {
     public PreparedStatement getPreparedStatement(String query, int flags) throws SQLException{
         return this.currentConection.prepareStatement(query,flags);
     }
-
+/*
     public void initTransaction() throws SQLException{
         this.currentConection.setAutoCommit(false);
     }
@@ -78,5 +78,5 @@ public class conectionDB {
             this.currentConection.setAutoCommit(false);
         }
     }
-
+*/
 }

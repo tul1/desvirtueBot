@@ -8,9 +8,7 @@ import org.telegram.telegrambots.bots.TelegramLongPollingCommandBot;
 import org.telegram.telegrambots.exceptions.TelegramApiException;
 import org.telegram.telegrambots.logging.BotLogger;
 
-
 public class commandsHandler extends TelegramLongPollingCommandBot {
-
     public static final String LOGTAG="COMMANDSHANDLER";
 
     public commandsHandler(){
@@ -37,11 +35,10 @@ public class commandsHandler extends TelegramLongPollingCommandBot {
             } catch (TelegramApiException e) {
                 BotLogger.error(LOGTAG, e);
             }
-     //       helpCmd.execute(absSender, message.getFrom(), message.getChat(), new String[] {});
+            //helpCmd.execute(absSender, message.getFrom(), message.getChat(), new String[] {});
         });
 
     }
-
 
     @Override
     public void processNonCommandUpdate(Update update) {
@@ -62,7 +59,6 @@ public class commandsHandler extends TelegramLongPollingCommandBot {
             }
         }
     }
-
 
     @Override
     public String getBotUsername() {

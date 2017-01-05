@@ -10,7 +10,6 @@ import org.telegram.telegrambots.exceptions.TelegramApiException;
 import org.telegram.telegrambots.logging.BotLogger;
 
 import java.sql.SQLException;
-import java.util.Arrays;
 
 /*
 * Descripcion: Estable el lugar donde se realizara la reunion.
@@ -18,28 +17,25 @@ import java.util.Arrays;
 
 public class lugarCmd extends BotCommand {
     private static final String LOGTAG="LUGARCMD";
-    private static volatile conectionDB connection;
+
     public lugarCmd(){
         super("lugar", "Con este comando podras establecer el lugar del evento.");
     }
 
     @Override
     public void execute(AbsSender absSender, User user, Chat chat, String[] strings){
-        //proceso la cadena para extraerle el nombre
         String lugar= new String();
         for(int i=0; i<strings.length; i++)
             lugar += strings[i]+ ((i<strings.length-1)?" ":"");
 
-        //se agrega el lugar en la columna necesaria
-        connection = new conectionDB();
         try {
-            //TODO ESTE QUERRY DEBE IR EN OTRO PAQUETE
+            final conectionDB connection = new conectionDB();
             connection.executeQuery( "UPDATE `TABLA_EVENTO` SET `LUGAR` = '"+lugar+"' WHERE `tabla_evento`.`ID` = 1");
+            connection.closeConexion();
         } catch (SQLException e) {
             BotLogger.error(LOGTAG, e);
         }
 
-        //imprimo el nombre del lugar por la interfaz de telegram
         StringBuilder messageBuilder =  new StringBuilder();
         messageBuilder.append("El evento se realizara en <b>"+lugar+"</b>\n");
 

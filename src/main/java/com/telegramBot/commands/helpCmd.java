@@ -30,10 +30,10 @@ public class helpCmd extends BotCommand {
     public void execute(AbsSender absSender, User user, Chat chat, String[] strings) {
 
         StringBuilder helpMessageBuilder = new StringBuilder("<b>Help</b>\n");
-        helpMessageBuilder.append("Los siguientes son los comandos que puede manejar el desvirtue_bot:\n\n");
+        helpMessageBuilder.append("Los siguientes son los comandos que puede manejar el desvirtue_bot:\n");
 
         for (BotCommand botCommand : commandRegistry.getRegisteredCommands()) {
-            helpMessageBuilder.append(botCommand.toString()).append("\n\n");
+            helpMessageBuilder.append(botCommand.toString()).append("\n");
         }
 
         SendMessage helpMessage = new SendMessage();

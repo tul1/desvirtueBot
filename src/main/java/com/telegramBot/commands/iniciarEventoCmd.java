@@ -13,13 +13,12 @@ import java.sql.SQLException;
 
 /*
     Descripcion:
-        Este metodo armara las 2 tablas en la base.
+        Inicia un evento.
+
 */
 
 public class iniciarEventoCmd extends BotCommand {
-
     private static final String LOGTAG = "INICIAREVENTOCMD";
-    private static volatile conectionDB connection;
 
     public iniciarEventoCmd(){
         super("iniciarEvento", "Con este comando podras iniciar un evento.");
@@ -28,12 +27,11 @@ public class iniciarEventoCmd extends BotCommand {
     @Override
     public void execute(AbsSender absSender, User user, Chat chat, String[] strings){
 
-        //Creo la base de datos y le cargo una fila vacia
-        connection = new conectionDB();
         try {
-            //TODO PONER ESTOS QUERYS EN UNA PAQUETE
+            final conectionDB connection = new conectionDB();
             connection.executeQuery("CREATE TABLE IF NOT EXISTS `DESVIRTUEDB`.`TABLA_EVENTO` ( `ID` INT NOT NULL DEFAULT 1, `FECHA` VARCHAR(20) DEFAULT '', `HORA` VARCHAR(20) DEFAULT '', `LUGAR` VARCHAR(20) DEFAULT '', PRIMARY KEY (`ID`)) ENGINE = InnoDB");
             connection.executeQuery("INSERT INTO tabla_evento VALUES () ON DUPLICATE KEY UPDATE ID = 1");
+            connection.closeConexion();
         } catch (SQLException e) {
             BotLogger.error(LOGTAG, e);
         }

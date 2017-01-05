@@ -26,12 +26,9 @@ public class Main {
     }
 
 
-
     private static TelegramBotsApi createTelegramBotsApi() throws TelegramApiException {
         TelegramBotsApi telegramBotsApi;
- 
         telegramBotsApi = createLongPollingTelegramBotsApi();
-
         return telegramBotsApi;
     }
 

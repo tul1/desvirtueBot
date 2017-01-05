@@ -12,12 +12,13 @@ import org.telegram.telegrambots.logging.BotLogger;
 import java.sql.SQLException;
 
 /*
-* Descripcion: Estable el lugar donde se realizara la reunion.
+*   Descripcion:
+*       Settea la fecha del evento
+*       TODO que pasa si la tabla no fue creada?
 */
 
 public class fechaCmd extends BotCommand {
     private static final String LOGTAG="FECHACMD";
-    private static volatile conectionDB connection;
 
     public fechaCmd(){
         super("fecha", "Con este comando podras establecer el fecha del evento.");
@@ -26,16 +27,14 @@ public class fechaCmd extends BotCommand {
     @Override
     public void execute(AbsSender absSender, User user, Chat chat, String[] strings){
         String fecha = strings[0];
-        //se agrega el lugar en la columna necesaria
-        connection = new conectionDB();
         try {
-            //TODO ESTE QUERRY DEBE IR EN OTRO PAQUETE
+            final conectionDB connection = new conectionDB();
             connection.executeQuery( "UPDATE `TABLA_EVENTO` SET `FECHA` = '"+fecha+"' WHERE `tabla_evento`.`ID` = 1");
+            connection.closeConexion();
         } catch (SQLException e) {
             BotLogger.error(LOGTAG, e);
         }
 
-        //imprimo el nombre del lugar por la interfaz de telegram
         StringBuilder messageBuilder =  new StringBuilder();
         messageBuilder.append("El evento se realizara el <b>"+fecha+"</b>\n");
 

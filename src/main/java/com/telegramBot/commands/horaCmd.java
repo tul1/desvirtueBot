@@ -18,7 +18,6 @@ import java.sql.SQLException;
 
 public class horaCmd extends BotCommand{
     private static final String LOGTAG = "HORACMD";
-    private static volatile conectionDB connection;
 
     public horaCmd(){
         super("hora","Con este comando podras establecer la hora del evento.");
@@ -26,13 +25,11 @@ public class horaCmd extends BotCommand{
 
     @Override
     public void execute(AbsSender absSender, User user, Chat chat, String[] strings){
-
         String hora= new String(strings[0]);
-
-        connection = new conectionDB();
         try {
-            //TODO ESTE QUERRY DEBE IR EN OTRO PAQUETE
+            final conectionDB connection = new conectionDB();
             connection.executeQuery( "UPDATE `TABLA_EVENTO` SET `HORA` = '"+hora+"' WHERE `tabla_evento`.`ID` = 1");
+            connection.closeConexion();
         } catch (SQLException e) {
             BotLogger.error(LOGTAG, e);
         }
