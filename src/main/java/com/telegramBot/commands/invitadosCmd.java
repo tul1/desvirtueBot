@@ -31,38 +31,28 @@ public class invitadosCmd extends BotCommand {
 
     @Override
     public void execute(AbsSender absSender, User user, Chat chat, String[] strings){
-        List<String> datosEvento = new ArrayList<>();
+        List<String> invitadosEvento = new ArrayList<>();
         boolean tablaExiste=true;
         try {
             final conectionDB connection = new conectionDB();
-
-            //TODO MODIFICAR TODO ESTO
-            final PreparedStatement preparedStatement = connection.getPreparedStatement("SELECT * FROM TABLA_EVENTO WHERE ID=1");
+            final PreparedStatement preparedStatement = connection.getPreparedStatement("SELECT * FROM TABLA_INVITADOS");
             final ResultSet result = preparedStatement.executeQuery();
-            result.next();
-/*
-            datosEvento.add(new datoEvento("Fecha", result.getString("FECHA")));
-            datosEvento.add(new datoEvento("Hora", result.getString("HORA")));
-            datosEvento.add(new datoEvento("Lugar", result.getString("LUGAR")));
-*/
-
-
+            while(result.next()){
+                invitadosEvento.add(result.getString("NOMBRE"));
+            }
             connection.closeConexion();
         } catch (SQLException e) {
             tablaExiste=false;
         }
 
         StringBuilder messageBuilder =  new StringBuilder();
-        if(tablaExiste==true){
-            //todo retocar esto
 
-/*            for(datoEvento dato: datosEvento){
-                messageBuilder.append( dato.label + ": ");
-                messageBuilder.append("<b>" + dato.value + "</b>\n");
-            }
-            */
+        if(tablaExiste==true){
+            messageBuilder.append("<b>Lista de invitados:</b>\n");
+            for(String invitado : invitadosEvento)
+                messageBuilder.append(invitado + "\n");
         }else{
-            messageBuilder.append("<b>No hay Evento para imprimir</b>\n");
+            messageBuilder.append("<b>No hay Lista de invitados para imprimir</b>\n");
         }
 
         SendMessage answer = new SendMessage();
