@@ -20,6 +20,8 @@ import java.util.List;
 *       Imprime las coordenadas del evento.
 *   Argumentos:
 *       No recibe argumentos este comando.
+*   TODO imprimir el nombre del evento.
+*
 **/
 
 public class coordenadasCmd extends BotCommand {

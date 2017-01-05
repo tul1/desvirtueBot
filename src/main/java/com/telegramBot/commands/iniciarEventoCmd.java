@@ -50,7 +50,10 @@ public class iniciarEventoCmd extends BotCommand {
 
             connection.closeConexion();
         } catch (SQLException e) {
-            BotLogger.error(LOGTAG, e);
+
+            //todo ver donde se esta generando la excepcion cuando se generan 2 eventos al mismo tiempo.
+
+           // BotLogger.error(LOGTAG, e);
         }
 
         StringBuilder messageBuilder =  new StringBuilder();
