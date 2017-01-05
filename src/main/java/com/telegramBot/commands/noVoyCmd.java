@@ -9,23 +9,30 @@ import org.telegram.telegrambots.exceptions.TelegramApiException;
 import org.telegram.telegrambots.logging.BotLogger;
 
 /**
- * Created by Patricio Tula on 27-Dec-16.
+ *   Descripcion:
+ *       Elimina al usuario que invoque de la lista de invitados.
+ *   Argumentos:
+ *       No recibe argumentos
  **/
 
 public class noVoyCmd extends BotCommand {
     private static final String LOGTAG="NOVOYCMD";
 
     public noVoyCmd(){
-        super("noVoy","Este comando sirve para darse de baja del evento.");
+        super("noVoy","Da de baja al usuario que lo invoque al Evento. Ejemplo de ejecucion: /voy .");
     }
 
     @Override
     public void execute(AbsSender absSender, User user, Chat chat, String[] strings){
+
+
+
         StringBuilder messageBuilder =  new StringBuilder();
         String userName = user.getFirstName() + " " + user.getLastName();
         messageBuilder.append(userName).append(" se da de baja al evento!\n");
 
         SendMessage answer = new SendMessage();
+        answer.enableHtml(true);
         answer.setChatId(chat.getId().toString());
         answer.setText(messageBuilder.toString());
 

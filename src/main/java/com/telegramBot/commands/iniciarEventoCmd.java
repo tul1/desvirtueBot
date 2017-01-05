@@ -42,11 +42,11 @@ public class iniciarEventoCmd extends BotCommand {
             connection.executeQuery("CREATE TABLE IF NOT EXISTS `DESVIRTUEDB`.`TABLA_EVENTO` ( `ID` INT NOT NULL DEFAULT 1, `NOMBRE` VARCHAR(50) DEFAULT '' ,`FECHA` VARCHAR(20) DEFAULT '', `HORA` VARCHAR(20) DEFAULT '', `LUGAR` VARCHAR(20) DEFAULT '', PRIMARY KEY (`ID`)) ENGINE = InnoDB");
             connection.executeQuery("INSERT INTO `TABLA_EVENTO` (`NOMBRE`) VALUES ('"+nombreEvento+"') ON DUPLICATE KEY UPDATE ID = 1");
             //creo tabla de invitados
-            connection.executeQuery("CREATE TABLE IF NOT EXISTS `DESVIRTUEDB`.`TABLA_INVITADOS` ( `ID` INT NOT NULL AUTO_INCREMENT, `NOMBRE` VARCHAR(50) NOT NULL, PRIMARY KEY (`ID`)) ENGINE = InnoDB");
+            connection.executeQuery("CREATE TABLE IF NOT EXISTS `DESVIRTUEDB`.`TABLA_INVITADOS` ( `ID` INT NOT NULL AUTO_INCREMENT, `NOMBRE` VARCHAR(50) NOT NULL UNIQUE, PRIMARY KEY (`ID`)) ENGINE = InnoDB");
             //creo las tablas bup
             connection.executeQuery("CREATE TABLE IF NOT EXISTS `DESVIRTUEDB`.`TABLA_EVENTO_BUP` ( `ID` INT NOT NULL DEFAULT 1, `NOMBRE` VARCHAR(50) DEFAULT '' ,`FECHA` VARCHAR(20) DEFAULT '', `HORA` VARCHAR(20) DEFAULT '', `LUGAR` VARCHAR(20) DEFAULT '', PRIMARY KEY (`ID`)) ENGINE = InnoDB");
             connection.executeQuery("INSERT INTO `TABLA_EVENTO_BUP` (`NOMBRE`) VALUES ('"+nombreEvento+"') ON DUPLICATE KEY UPDATE ID = 1");
-            connection.executeQuery("CREATE TABLE IF NOT EXISTS `DESVIRTUEDB`.`TABLA_INVITADOS_BUP` ( `ID` INT NOT NULL AUTO_INCREMENT, `NOMBRE` VARCHAR(50) NOT NULL, PRIMARY KEY (`ID`)) ENGINE = InnoDB");
+            connection.executeQuery("CREATE TABLE IF NOT EXISTS `DESVIRTUEDB`.`TABLA_INVITADOS_BUP` ( `ID` INT NOT NULL AUTO_INCREMENT, `NOMBRE` VARCHAR(50) UNIQUE NOT NULL, PRIMARY KEY (`ID`)) ENGINE = InnoDB");
 
             connection.closeConexion();
         } catch (SQLException e) {
