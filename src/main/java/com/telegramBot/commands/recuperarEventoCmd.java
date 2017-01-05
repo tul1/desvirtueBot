@@ -12,31 +12,31 @@ import org.telegram.telegrambots.logging.BotLogger;
 import java.sql.SQLException;
 
 /**
-*    Descripcion:
-*        Settea la hora a la que se realizara el evento. Carga en la tabla la hora del evento.
-*   Argumentos:
-*       Recibe 1 solo argumento, una cadena de caracteres que sera la hora  del evento.
-**/
+ *   Descripcion:
+ *       Recupera un evento eliminado.
+ *   Argumentos:
+ *       No recibe argumentos
+ **/
 
-public class horaCmd extends BotCommand{
-    private static final String LOGTAG = "HORACMD";
+public class recuperarEventoCmd extends BotCommand {
+    private static final String LOGTAG="LUGARCMD";
 
-    public horaCmd(){
-        super("hora","Carga la Hora del evento. Ejemplo de ejecucion: /hora 20:00.");
+    public recuperarEventoCmd(){
+        super("recuperarEvento", "Recupera Evento anterior si este fue eliminado. Ejemplo de ejecucion: /recuperarevento .");
     }
 
     @Override
     public void execute(AbsSender absSender, User user, Chat chat, String[] strings){
-        String hora = new String(strings[0]);
-        String answerStr = new String(hora+" <b>Hora asignada</b> \n");
+
+        String answerStr = new String("<b>Evento recuperado</b>\n");
 
         try {
             final conectionDB connection = new conectionDB();
-            connection.executeQuery( "UPDATE `TABLA_EVENTO` SET `HORA` = '"+hora+"' WHERE `TABLA_EVENTO`.`ID` = 1");
-            connection.executeQuery("UPDATE `TABLA_EVENTO_BUP` SET `HORA` = '" + hora + "' WHERE `TABLA_EVENTO_BUP`.`ID` = 1");
+            connection.executeQuery("CREATE TABLE `DESVIRTUEDB`.`TABLA_EVENTO` AS (SELECT * FROM `TABLA_EVENTO_BUP`)");
+            connection.executeQuery("CREATE TABLE `DESVIRTUEDB`.`TABLA_INVITADOS` AS (SELECT * FROM `TABLA_INVITADOS_BUP`)");
             connection.closeConexion();
         } catch (SQLException e) {
-            answerStr="<b>Debe iniciar un Evento para cargar Hora.</b>\n";
+            answerStr="<b>No pudo recuperarse el evento. Debe finalizar evento para recuperarlo.</b>\n";
         }
 
         StringBuilder messageBuilder =  new StringBuilder();
@@ -52,6 +52,5 @@ public class horaCmd extends BotCommand{
         }catch(TelegramApiException e){
             BotLogger.error(LOGTAG, e);
         }
-
     }
 }

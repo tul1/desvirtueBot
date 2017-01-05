@@ -11,10 +11,12 @@ import org.telegram.telegrambots.logging.BotLogger;
 
 import java.sql.SQLException;
 
-/*
+/**
 *   Descripcion:
-*       Settea la fecha del evento
-*/
+*       Settea la fecha del evento.
+*   Argumentos:
+*       Recibe 1 solo argumento, una cadena de caracteres que sera la fecha del evento.
+**/
 
 public class fechaCmd extends BotCommand {
     private static final String LOGTAG="FECHACMD";
@@ -34,7 +36,6 @@ public class fechaCmd extends BotCommand {
             connection.executeQuery( "UPDATE `TABLA_EVENTO_BUP` SET `FECHA` = '"+fecha+"' WHERE `TABLA_EVENTO_BUP`.`ID` = 1");
             connection.closeConexion();
         } catch (SQLException e) {
-//            BotLogger.error(LOGTAG, e);
             answerStr="<b>Debe iniciar un Evento para cargar Fecha.</b>\n";
         }
 

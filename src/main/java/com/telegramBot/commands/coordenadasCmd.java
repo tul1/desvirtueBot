@@ -15,18 +15,18 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-/*
+/**
 *   Descripcion:
 *       Imprime las coordenadas del evento.
-*   TODO cambiar nombre a "coordenadas"
-*
-*/
+*   Argumentos:
+*       No recibe argumentos este comando.
+**/
 
-public class imprimirEventoCmd extends BotCommand {
-    private static final String LOGTAG="IMPRIMIREVENTOCMD";
+public class coordenadasCmd extends BotCommand {
+    private static final String LOGTAG="COORDENADASCMD";
 
-    public imprimirEventoCmd(){
-        super("imprimirEvento","Inicia un Evento. Ejemplo de ejecucion: /iniciarevento Cumple Cabobo! . El argumento es opcional.");
+    public coordenadasCmd(){
+        super("coordenadas","Imprime las coordenadas del evento (fecha,hora y fecha). Ejemplo de ejecucion: /coordenadas .");
     }
 
     public class datoEvento{
@@ -49,7 +49,6 @@ public class imprimirEventoCmd extends BotCommand {
             datosEvento.add(new datoEvento("Lugar", result.getString("LUGAR")));
             connection.closeConexion();
         } catch (SQLException e) {
-//            BotLogger.error(LOGTAG, e);
             tablaExiste=false;
         }
 

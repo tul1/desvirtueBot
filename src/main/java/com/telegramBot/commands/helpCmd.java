@@ -9,10 +9,12 @@ import org.telegram.telegrambots.exceptions.TelegramApiException;
 import org.telegram.telegrambots.logging.BotLogger;
 import org.telegram.telegrambots.bots.commands.ICommandRegistry;
 
-/*
-    Descripcion:
-        Este comando simplemente imprime por pantalla un breve resumen de las rutinas que realiza el bot.
-*/
+/**
+*    Descripcion:
+*        Este comando simplemente imprime por pantalla un breve resumen de las rutinas que realiza el bot.
+*   Argumentos:
+*       No recibe argumentos este comando.
+**/
 
 public class helpCmd extends BotCommand {
 

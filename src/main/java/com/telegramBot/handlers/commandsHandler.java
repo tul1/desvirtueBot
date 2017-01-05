@@ -19,8 +19,9 @@ public class commandsHandler extends TelegramLongPollingCommandBot {
         register(new horaCmd());
         register(new voyCmd());
         register(new noVoyCmd());
-        register(new imprimirEventoCmd());
+        register(new coordenadasCmd());
         register(new finalizarEventoCmd());
+        register(new recuperarEventoCmd());
         //hay que pasarle este contexto para que tenga acceso a la lista de comandos
         helpCmd helpCommand = new helpCmd(this);
         register(helpCommand);

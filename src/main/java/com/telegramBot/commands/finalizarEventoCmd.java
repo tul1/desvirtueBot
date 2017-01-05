@@ -9,22 +9,22 @@ import org.telegram.telegrambots.bots.commands.BotCommand;
 import org.telegram.telegrambots.exceptions.TelegramApiException;
 import org.telegram.telegrambots.logging.BotLogger;
 
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
+
 import java.sql.SQLException;
 
-/*
+/**
 *   Descripcion:
 *       Elimina el Evento creado.
-*
-*/
+*   Argumentos:
+*       No recibe argumentos este comando.
+**/
 
 public class finalizarEventoCmd  extends BotCommand {
 
     private static final String LOGTAG="FINALIZAREVENTOCMD";
 
     public finalizarEventoCmd(){
-        super("finalizarEvento","Elimina el evento.");
+        super("finalizarEvento","Finaliza el evento creado. Ejemplo de ejecicion: /finalizarevento");
     }
 
     @Override

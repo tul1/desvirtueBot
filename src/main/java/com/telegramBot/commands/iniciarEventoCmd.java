@@ -22,7 +22,7 @@ public class iniciarEventoCmd extends BotCommand {
     private static final String LOGTAG = "INICIAREVENTOCMD";
 
     public iniciarEventoCmd(){
-        super("iniciarEvento", "Con este comando podras iniciar un evento.");
+        super("iniciarEvento","Inicia un Evento. Ejemplo de ejecucion: /iniciarevento Cumple Cabobo! . El argumento es opcional.");
     }
 
     @Override

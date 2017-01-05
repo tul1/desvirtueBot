@@ -11,10 +11,12 @@ import org.telegram.telegrambots.logging.BotLogger;
 
 import java.sql.SQLException;
 
-/*
+/**
 *   Descripcion:
 *       Settea el lugar donde se realizara la reunion.
-*/
+*   Argumentos:
+*       Recibe 1 solo argumento, una cadena de caracteres que sera el lugar del evento.
+**/
 
 public class lugarCmd extends BotCommand {
     private static final String LOGTAG="LUGARCMD";
@@ -37,7 +39,6 @@ public class lugarCmd extends BotCommand {
             connection.executeQuery("UPDATE `TABLA_EVENTO_BUP` SET `LUGAR` = '" + lugar + "' WHERE `TABLA_EVENTO_BUP`.`ID` = 1");
             connection.closeConexion();
         } catch (SQLException e) {
-//            BotLogger.error(LOGTAG, e);
             answerStr="<b>Debe iniciar un Evento para cargar Lugar.</b>\n";
         }
 
